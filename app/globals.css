@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(270deg, #1e1e2f, #2b5876, #4f46e5);
+  background:#BDA6CE;
   background-size: 600% 600%;
   animation: gradientFlow 12s ease infinite;
   color: white;
