@@ -1,270 +1,108 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --bg-gradient: linear-gradient(135deg, #1e1e2f, #2b5876);
-  --card-bg: rgba(255, 255, 255, 0.08);
-  --glass-blur: blur(12px);
-  --primary: #4f46e5;
-  --accent: #22c55e;
-  --danger: #ef4444;
-  --text: #ffffff;
-}
-
 body {
   font-family: 'Poppins', sans-serif;
-  background: var(--bg-gradient);
-  color: var(--text);
-  min-height: 100vh;
-}
-
-ul, ol {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.container {
-  max-width: 600px;
-  margin: auto;
-  padding: 2rem;
-}
-
-header {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: var(--glass-blur);
+  background: linear-gradient(270deg, #1e1e2f, #2b5876, #4f46e5);
+  background-size: 600% 600%;
+  animation: gradientFlow 12s ease infinite;
   color: white;
-  padding: 1.5rem;
-  text-align: center;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: 600;
+  overflow-x: hidden;
 }
 
-main {
-  padding: 1rem 0;
+/* 🌈 Animated Background */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.inventory-item {
-  background: var(--card-bg);
-  backdrop-filter: var(--glass-blur);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-  padding: 1.5rem;
-  margin-bottom: 1.2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s ease;
-  animation: fadeIn 0.4s ease-in-out;
+/* 🔥 Glass Effect for MUI Boxes */
+.MuiBox-root {
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease !important;
 }
 
-.inventory-item:hover {
-  transform: translateY(-5px) scale(1.01);
+/* ✨ Floating animation */
+@keyframes floatUp {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
 }
 
-.inventory-item span:first-child {
-  font-weight: 600;
-  font-size: 18px;
+/* 📦 Inventory cards animation */
+.MuiBox-root:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-.inventory-item span:nth-child(2) {
-  background: var(--primary);
-  padding: 5px 12px;
-  border-radius: 8px;
-}
-
-button {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  margin-left: 8px;
+/* ⚡ Buttons upgrade */
+.MuiButton-root {
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
   box-shadow: 0 0 10px rgba(79,70,229,0.5);
 }
 
-button:hover {
+/* 💥 Button hover glow */
+.MuiButton-root:hover {
   transform: scale(1.08);
-  opacity: 0.9;
   box-shadow: 0 0 20px rgba(79,70,229,0.9);
 }
 
-button.danger {
-  background: var(--danger);
+/* 🎯 Add button pulse */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 5px #4f46e5; }
+  50% { box-shadow: 0 0 20px #4f46e5; }
+  100% { box-shadow: 0 0 5px #4f46e5; }
 }
 
-button.danger:hover {
-  background: #dc2626;
+.MuiButton-contained {
+  animation: pulseGlow 2s infinite;
 }
 
-.add-btn {
-  display: block;
-  margin: 0 auto 20px auto;
-  background: var(--accent);
-  padding: 0.8rem 1.5rem;
-  border-radius: 12px;
-  font-size: 16px;
+/* 🧠 Typography upgrade */
+.MuiTypography-root {
+  font-weight: 600 !important;
+  letter-spacing: 0.5px;
 }
 
-.add-btn:hover {
-  background: #16a34a;
+/* 🔮 Modal styling */
+.MuiModal-root .MuiBox-root {
+  background: rgba(255,255,255,0.1) !important;
+  backdrop-filter: blur(15px);
+  border-radius: 16px !important;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal-content {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: var(--glass-blur);
-  border-radius: 16px;
-  padding: 2rem;
-  width: 100%;
-  max-width: 400px;
-  color: white;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-input[type="text"] {
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  outline: none;
-}
-
-footer {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: var(--glass-blur);
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  border-radius: 12px;
-  margin-top: 20px;
-}
-
-@keyframes fadeIn {
+/* ✨ Smooth fade-in */
+@keyframes fadeInSmooth {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(20px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-.app {
-  display: flex;
-  min-height: 100vh;
+/* Apply to all major components */
+.MuiBox-root,
+.MuiButton-root,
+.MuiTypography-root {
+  animation: fadeInSmooth 0.6s ease;
 }
 
-.sidebar {
-  width: 220px;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(15px);
-  padding: 20px;
-  color: white;
+/* 🔥 Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.sidebar h2 {
-  margin-bottom: 20px;
-}
-
-.sidebar ul li {
-  padding: 12px;
-  margin: 10px 0;
+::-webkit-scrollbar-thumb {
+  background: #4f46e5;
   border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
 }
 
-.sidebar ul li:hover,
-.sidebar ul .active {
-  background: var(--primary);
-}
-
-.main-content {
-  flex: 1;
-  padding: 20px;
-}
-
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-}
-
-.stats {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.stat-card {
-  flex: 1;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 600;
-  padding: 20px;
-  border-radius: 15px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  transition: 0.3s;
-  box-shadow: 0 0 10px rgba(79,70,229,0.5);
-}
-
-.stat-card:hover {
-  transform: scale(1.05);
-  background: rgba(255,255,255,0.15);
-  box-shadow: 0 0 20px rgba(79,70,229,0.9);
-}
-
-.inventory-list {
-  margin-top: 10px;
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .inventory-item {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  button {
-    width: 100%;
-  }
+::-webkit-scrollbar-track {
+  background: transparent;
 }
