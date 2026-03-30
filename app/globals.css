@@ -72,6 +72,17 @@ main {
   transform: translateY(-5px) scale(1.01);
 }
 
+.inventory-item span:first-child {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.inventory-item span:nth-child(2) {
+  background: var(--primary);
+  padding: 5px 12px;
+  border-radius: 8px;
+}
+
 button {
   background: var(--primary);
   color: white;
@@ -82,11 +93,13 @@ button {
   font-weight: 500;
   transition: all 0.3s ease;
   margin-left: 8px;
+  box-shadow: 0 0 10px rgba(79,70,229,0.5);
 }
 
 button:hover {
   transform: scale(1.08);
   opacity: 0.9;
+  box-shadow: 0 0 20px rgba(79,70,229,0.9);
 }
 
 button.danger {
@@ -168,16 +181,6 @@ footer {
   }
 }
 
-@media (max-width: 600px) {
-  .inventory-item {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  button {
-    width: 100%;
-  }
-}
 .app {
   display: flex;
   min-height: 100vh;
@@ -236,13 +239,32 @@ footer {
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(10px);
   transition: 0.3s;
+  box-shadow: 0 0 10px rgba(79,70,229,0.5);
 }
 
 .stat-card:hover {
   transform: scale(1.05);
   background: rgba(255,255,255,0.15);
+  box-shadow: 0 0 20px rgba(79,70,229,0.9);
 }
 
 .inventory-list {
   margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .inventory-item {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
 }
