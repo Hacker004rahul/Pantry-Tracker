@@ -222,7 +222,12 @@ export default function Home() {
       >
         <Typography variant="h2" color="#333">Inventory Items</Typography>
       </Box>
-      <Stack width='800px' height="300px" spacing={2} overflow="auto">
+    <Stack 
+  width='800px' 
+  maxHeight="70vh" 
+  spacing={2} 
+  overflow="auto"
+>
         {inventory.map(({ name, quantity }) => (
           <Box
             key={name}
